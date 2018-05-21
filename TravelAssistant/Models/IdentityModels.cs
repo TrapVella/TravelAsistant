@@ -3,6 +3,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace TravelAssistant.Models
 {
@@ -16,6 +18,7 @@ namespace TravelAssistant.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public ICollection<TravelPlan> TravelPlans { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -25,9 +28,17 @@ namespace TravelAssistant.Models
         {
         }
 
+        public DbSet<TravelPlan> TravelPlan { get; set; }
+        public DbSet<Position> Position { get; set; }
+
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+   //     public System.Data.Entity.DbSet<TravelAssistant.Models.TravelPlan> TravelPlans { get; set; }
+
+//        public System.Data.Entity.DbSet<TravelAssistant.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
